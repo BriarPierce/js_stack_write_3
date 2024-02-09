@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+    <title>ArcGIS Maps SDK for JavaScript Tutorials: Display a map</title>
+
+    <style>
+      html,
+      body,
+      #viewDiv {
+        padding: 0;
+        margin: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+    <link rel="stylesheet" href="https://js.arcgis.com/4.28/esri/themes/light/main.css">
+    <script src="https://js.arcgis.com/4.28/"></script>
+
+    <script>
+      require(["esri/config", "esri/Map", "esri/views/MapView", "esri/layers/GeoJSONLayer"], function(esriConfig, Map, MapView, GeoJSONLayer) {
+
+        esriConfig.apiKey = "AAPK0aee94b5d3fa4c61aef2f6d673b63373r6ZylQKkEbWdEmmxojG-k71cUosjAIB5Xe3c8UbDfw0HC6OxRxrargG4xciHm75i";
+
+        const geojsonLayer = new GeoJSONLayer({
+          url: "MegaCities_AGOL.geojson",
+          copyright: "USGS Earthquakes",
+          orderBy: {
+            field: "mag"
+          }
+        });
+
+        const map = new Map({
+          basemap: "gray-vector",
+          layers: [geojsonLayer]
+        });
+
+        const view = new MapView({
+            map: map,
+            center: [0, 0], // Longitude, latitude
+            zoom: 1, // Zoom level
+            container: "viewDiv" // Div element
+          });
+
+      });
+    
+    </script>
+
+  </head>
+  <body>
+    <div id="viewDiv"></div>
+  </body>
+</html>
