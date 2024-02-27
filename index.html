@@ -19,28 +19,28 @@
     <script src="https://js.arcgis.com/4.28/"></script>
 
     <script>
-    require([
-      "esri/config",
-      "esri/Map",
-      "esri/views/MapView",
-      "esri/Graphic",
-      "esri/layers/GraphicsLayer",
-      "esri/layers/FeatureLayer",
-      "esri/widgets/Editor"
-    ], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
-      esriConfig.apiKey = "AAPK0aee94b5d3fa4c61aef2f6d673b63373r6ZylQKkEbWdEmmxojG-k71cUosjAIB5Xe3c8UbDfw0HC6OxRxrargG4xciHm75i";
-
-      const map = new Map({
-        basemap: "gray-vector"
-      });
-
-      const view = new MapView({
-        container: "viewDiv",
-        map: map,
-        zoom: 1,
-        center: [0, 0] // Longitude, latitude 
-      });
-
+      require([
+        "esri/config",
+        "esri/Map",
+        "esri/views/MapView",
+        "esri/Graphic",
+        "esri/layers/GraphicsLayer",
+        "esri/layers/FeatureLayer",
+        "esri/widgets/Editor"
+      ], function(esriConfig, Map, MapView, Graphic, GraphicsLayer, FeatureLayer, Editor) {
+        esriConfig.apiKey = "AAPK0aee94b5d3fa4c61aef2f6d673b63373r6ZylQKkEbWdEmmxojG-k71cUosjAIB5Xe3c8UbDfw0HC6OxRxrargG4xciHm75i";
+      
+        const map = new Map({
+          basemap: "gray-vector"
+        });
+      
+        const view = new MapView({
+          container: "viewDiv",
+          map: map,
+          zoom: 1,
+          center: [0, 0] // Longitude, latitude 
+        });
+    
       // Define a pop-up for usaeduLayer
       const popupEduusa = {
         "title": "EDUs",
@@ -110,26 +110,26 @@ const myAirports = new FeatureLayer({
 
 });
 
-// Add the renderer to the myAirports layer
-const myAirports = new FeatureLayer({
-  url: "https://services5.arcgis.com/ZYK688A64hFRZ5yX/arcgis/rest/services/My_Airports/FeatureServer",
-  outFields: ["AirportCode"],
-  renderer: {
-    type: "simple",
-    symbol: {
-      type: "simple-marker",
-      color: "blue",
-      size: "8px",
-      outline: {
-        color: [255, 255, 255],
-        width: 1
+    // Define the myAirports layer with the renderer
+    const myAirports = new FeatureLayer({
+      url: "https://services5.arcgis.com/ZYK688A64hFRZ5yX/arcgis/rest/services/My_Airports/FeatureServer",
+      outFields: ["AirportCode"],
+      renderer: {
+        type: "simple",
+        symbol: {
+          type: "simple-marker",
+          color: "blue",
+          size: "8px",
+          outline: {
+            color: [255, 255, 255],
+            width: 1
+          }
+        }
       }
-    }
-  }
-});
+    });
 
-//adding the feature layer to the map
-map.add(myAirports);
+  // Add the feature layer to the map
+  map.add(myAirports);
 
 // Set the point layer's LayerInfo
 const pointInfos = {
