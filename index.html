@@ -110,6 +110,24 @@ const myAirports = new FeatureLayer({
 
 });
 
+// Add the renderer to the myAirports layer
+const myAirports = new FeatureLayer({
+  url: "https://services5.arcgis.com/ZYK688A64hFRZ5yX/arcgis/rest/services/My_Airports/FeatureServer",
+  outFields: ["AirportCode"],
+  renderer: {
+    type: "simple",
+    symbol: {
+      type: "simple-marker",
+      color: "blue",
+      size: "8px",
+      outline: {
+        color: [255, 255, 255],
+        width: 1
+      }
+    }
+  }
+});
+
 //adding the feature layer to the map
 map.add(myAirports);
 
